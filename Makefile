@@ -6,20 +6,24 @@ NODE_BIN = ./node_modules/.bin
 
 #
 # Tasks
-# 
+#
 
-clean: 
-	@rm -rf node_modules/lib &> /dev/null || true
+clean:
+	@rm -rf node_modules/lib &> /dev/null || true &
+	@rm -rf lib &> /dev/null || true
 
 reactify: clean
-	@${NODE_BIN}/jsx --watch ${PWD}/src ${PWD}/lib &
+	@${NODE_BIN}/babel ${PWD}/src --watch --out-dir  ${PWD}/lib &
 	@wait
-	
-link: reactify
-	@ln -rs lib node_modules/lib
 
-reload: link
-	@${NODE_BIN}/watchify node_modules/lib/Index.js -o ./public/bundle.js &
+link: reactify
+	@ln -s ${PWD}/lib node_modules/lib
+
+lint: link
+	@${NODE_BIN}/standard ${PWD}/src
+
+reload: lint
+	@${NODE_BIN}/watchify node_modules/lib/Index.js -d -o ./public/bundle.js &
 	@wait
 
 dev: reload
