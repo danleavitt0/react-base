@@ -14,7 +14,6 @@ export default class Login extends React.Component {
   }
 
   render () {
-    console.log(this)
     var styles = this.getStyles()
     return (
       <FlatButton style={styles.button}> Login </FlatButton>

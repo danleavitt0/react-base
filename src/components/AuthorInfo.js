@@ -3,8 +3,6 @@ import React from 'react'
 export default class AuthorInfo extends React.Component {
 
   getStyles () {
-    var theme = this.context.muiTheme
-    console.log(theme)
     var styles = {
       image: {
         height: 30,

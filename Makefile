@@ -13,16 +13,17 @@ clean:
 	@rm -rf lib &> /dev/null || true
 
 reactify: clean
+	@${NODE_BIN}/babel ${PWD}/src --out-dir  ${PWD}/lib
 	@${NODE_BIN}/babel ${PWD}/src --watch --out-dir  ${PWD}/lib &
 	@wait
 
-link: reactify
-	@ln -s ${PWD}/lib node_modules/lib
-
-lint: link
+lint: reactify
 	@${NODE_BIN}/standard ${PWD}/src
 
-reload: lint
+link: lint
+	@ln -s ${PWD}/lib ${PWD}/node_modules
+
+reload: link
 	@${NODE_BIN}/watchify node_modules/lib/Index.js -d -o ./public/bundle.js &
 	@wait
 
