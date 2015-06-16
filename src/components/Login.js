@@ -1,24 +1,24 @@
-var React = require('react')
-var Radium = require('radium')
-var mui = require('material-ui')
-var FlatButton = mui.FlatButton
+import React from 'react'
+import {FlatButton} from 'material-ui'
 
-var Login = React.createClass({
-    getStyles: function () {
-      var styles = {
-        button: {
-          backgroundColor: 'pink',
-          color: 'white'
-        }
+export default class Login extends React.Component {
+
+  getStyles () {
+    var styles = {
+      button: {
+        backgroundColor: 'pink',
+        color: 'white'
       }
-      return styles
-    },
-    render: function () {
-      var styles = this.getStyles()
-      return (
-        <FlatButton style={styles.button}> Login </FlatButton>
-      )
     }
-})
+    return styles
+  }
 
-module.exports = Radium(Login)
+  render () {
+    console.log(this)
+    var styles = this.getStyles()
+    return (
+      <FlatButton style={styles.button}> Login </FlatButton>
+    )
+  }
+
+}

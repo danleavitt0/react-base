@@ -1,35 +1,35 @@
-var React = require('react')
-var Radium = require('radium')
-var Login = require('lib/components/Login')
+import React from 'react'
+import Login from './Login'
 
-var Header = React.createClass({
+export default class Header extends React.Component {
 
-  render: function () {
+  getStyles () {
+    var styles = {
+      base: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 0 3px rgba(0,0,0,0.13)',
+        padding: 20,
+        backgroundColor: 'lightblue',
+        color: 'white'
+      },
+      header: {
+        flex: 1,
+        margin: 0
+      }
+    }
+    return styles
+  }
+
+  render () {
+    var styles = this.getStyles()
     return (
      <div style={styles.base}>
        <h1 style={styles.header}>Header</h1>
        <Login />
-       <input></input>
      </div>
     )
   }
 
-})
-
-var styles = {
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxShadow: '0 0 3px rgba(0,0,0,0.13)',
-    padding: 20,
-    backgroundColor: 'lightblue',
-    color: 'white'
-  },
-  header: {
-    flex: 1,
-    margin: 0
-  }
 }
-
-module.exports = Radium(Header)

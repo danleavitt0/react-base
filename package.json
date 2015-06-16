@@ -2,7 +2,7 @@
   "name": "react-base",
   "version": "1.0.0",
   "description": "Start a react project",
-  "main": "app.js",
+  "main": "./lib",
   "dependencies": {
     "babel": "^5.5.8",
     "body-parser": "^1.12.4",

@@ -1,33 +1,31 @@
-var React = require('react')
-var $ = require('jquery')
+import React from 'react'
 var ThemeManager = require('material-ui/lib/styles/theme-manager')()
-var Header = require('lib/components/Header')
+import {Header, AuthorInfo, Login} from 'lib/components'
 
-var App = React.createClass({
+var mountNode = document.body
 
-  // Change this
-  render: function () {
-    return (
-      <div>
-        <Header />
-      </div>
-    )
-  },
+class App extends React.Component {
 
-  // Don't touch this
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-  getChildContext: function () {
+  getChildContext () {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
     }
   }
 
-})
+  render () {
+    return (
+      <div>
+        <Header />
+        <AuthorInfo author='steve' time='whenever' />
+        <Login />
+      </div>
+    )
+  }
 
-module.exports = App
+}
 
-$(document).ready(function () {
-  React.render(<App />, document.getElementById('container'))
-})
+App.childContextTypes = {
+  muiTheme: React.PropTypes.object
+}
+
+React.render(<App/>, mountNode)
