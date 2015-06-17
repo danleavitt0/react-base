@@ -17,7 +17,6 @@ class App extends React.Component {
       <div>
         <Header />
         <AuthorInfo author='steve' time='whenever' />
-        <Login />
       </div>
     )
   }

@@ -23,8 +23,12 @@ lint: reactify
 link: lint
 	@ln -s ${PWD}/lib ${PWD}/node_modules
 
-reload: link
-	@${NODE_BIN}/watchify node_modules/lib/Index.js -d -o ./public/bundle.js &
+watchify: link
+	@${NODE_BIN}/watchify lib/Main.js -d -g livereactload -o ./public/bundle.js &
+	@wait
+
+reload: watchify
+	@node_modules/.bin/livereactload monitor -n ${PWD}/public/bundle.js &
 	@wait
 
 dev: reload
