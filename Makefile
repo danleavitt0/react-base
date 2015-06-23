@@ -32,7 +32,7 @@ reload: watchify
 	@wait
 
 dev: reload
-	@${NODE_BIN}/nodemon app.js
+	@${NODE_BIN}/babel-node app.js
 
 prod: clean
 	@${NODE_BIN}/browserify src/index.jsx | ${NODE_BIN}/uglifyjs > ./public/bundle.js

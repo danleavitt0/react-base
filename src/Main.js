@@ -1,30 +1,15 @@
-import React from 'react'
-var ThemeManager = require('material-ui/lib/styles/theme-manager')()
-import {Header, AuthorInfo, Login} from 'lib/components'
+var React = require('react')
 
-var mountNode = document.body
+var App = React.createClass({
 
-class App extends React.Component {
-
-  getChildContext () {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    }
-  }
-
-  render () {
+  render: function () {
     return (
-      <div>
-        <Header />
-        <AuthorInfo author='steve' time='whenever' />
-      </div>
+      //erase and add HTML here
+      <div> Hello World </div>
     )
   }
 
-}
+})
 
-App.childContextTypes = {
-  muiTheme: React.PropTypes.object
-}
 
-React.render(<App/>, mountNode)
+React.render(<App/>, document.body)
