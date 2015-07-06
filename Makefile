@@ -16,7 +16,7 @@ reactify: clean
 	@${NODE_BIN}/babel ${PWD}/src --watch --out-dir  ${PWD}/lib &
 	@wait
 
-watchify: link
+watchify: reactify
 	@${NODE_BIN}/watchify lib/Main.js -d -o ./public/bundle.js &
 	@wait
 
