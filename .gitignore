@@ -28,3 +28,5 @@ node_modules
 
 #build lib
 lib
+
+public/bundle.js
