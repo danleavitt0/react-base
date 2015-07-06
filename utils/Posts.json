@@ -1,0 +1,20 @@
+{
+	"posts":[{
+		"author":"Daniel",
+		"title":"Swimming with fish",
+		"content":"This is a message content",
+		"time":"Yesterday at 12:45"
+	},
+	{
+		"author":"James",
+		"title":"Jungle Book",
+		"content":"Is a deeply disturbing childrens book.",
+		"time": "4 hours ago"
+	},
+	{
+		"author":"Angela",
+		"title":"One more post",
+		"content":"Some people like to write very long winded posts with lots of words and other stuff that makes me a bored puppy dog.",
+		"time":"moments ago"
+	}]
+}
