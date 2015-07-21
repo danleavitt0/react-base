@@ -1,8 +1,8 @@
 var React = require('react')
 var ThemeManager = require('material-ui/lib/styles/theme-manager')()
 import {AppBar, Avatar, Card, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui'
-import {ColumnLayout} from 'react-components-9dots'
 import Posts from '../utils/Posts'
+import {ColumnLayout} from 'react-components-9dots'
 
 var styles = {
   card: {
@@ -22,9 +22,22 @@ var styles = {
 }
 
 var App = React.createClass({
-
   childContextTypes: {
     muiTheme: React.PropTypes.object
+  },
+  
+  getInitialState: function () {
+    return ({
+      posts:Posts
+    })
+  },
+  
+  addCard: function(card) {
+    var posts = this.state.posts
+    posts.push(card)
+    this.setState({
+      posts: posts
+    })
   },
 
   getChildContext: function() {
@@ -34,7 +47,7 @@ var App = React.createClass({
   },
 
   render: function () {
-    var posts = Posts.map(function(post){
+    var posts = this.state.posts.map(function (post) {
       return (
         <Card style={styles.card}>
           <div>
@@ -51,9 +64,8 @@ var App = React.createClass({
       )
     })
     return (
-      <div style={styles.container}>
-        <AppBar title='example' />
-        <ColumnLayout cards={posts}/>
+      <div>
+        {posts}
       </div>
     )
   }
