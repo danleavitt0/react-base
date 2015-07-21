@@ -1,12 +1,12 @@
 var React = require('react')
 var ThemeManager = require('material-ui/lib/styles/theme-manager')()
-import {AppBar, Avatar, Card, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui'
+import {AppBar, Avatar, Card, CardHeader, CardText, CardMedia, CardTitle, Dialog, FlatButton, TextField, IconButton} from 'material-ui'
 import Posts from '../utils/Posts'
+import LocalStorageMixin from 'react-localstorage'
 import {ColumnLayout} from 'react-components-9dots'
 
 var styles = {
   card: {
-    width: 350,
     margin: 20,
     backgroundColor: 'lemonchiffon'
   },
@@ -22,6 +22,15 @@ var styles = {
 }
 
 var App = React.createClass({
+  
+  mixins: [LocalStorageMixin],
+
+  getInitialState: function() {
+    return {
+      posts: Posts
+    }
+  },
+  
   childContextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -29,14 +38,6 @@ var App = React.createClass({
   getInitialState: function () {
     return ({
       posts:Posts
-    })
-  },
-  
-  addCard: function(card) {
-    var posts = this.state.posts
-    posts.push(card)
-    this.setState({
-      posts: posts
     })
   },
 
@@ -65,9 +66,22 @@ var App = React.createClass({
     })
     return (
       <div>
-        {posts}
+        <AppBar title='Example website' />
+        <ColumnLayout cards={posts} />
       </div>
     )
+  },
+  
+  showDialog: function () {
+    
+  },
+  
+  hideDialog: function () {
+    
+  },
+  
+  submitPost: function () {
+    
   }
 
 })
