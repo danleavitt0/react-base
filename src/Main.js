@@ -2,22 +2,16 @@ var React = require('react')
 var ThemeManager = require('material-ui/lib/styles/theme-manager')()
 import {AppBar, Avatar, Card, CardHeader, CardText, CardMedia, CardTitle, Dialog, FlatButton, TextField, IconButton} from 'material-ui'
 import Posts from '../utils/Posts'
-import LocalStorageMixin from 'react-localstorage'
 import {ColumnLayout} from 'react-components-9dots'
+import LocalStorageMixin from 'react-localstorage'
 
 var styles = {
   card: {
     margin: 20,
     backgroundColor: 'lemonchiffon'
   },
-  header: {
-    backgroundColor: 'lightblue'
-  },
-  container: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    flexWrap: 'wrap'
+  textfield: {
+    margin: '10px 5px'
   }
 }
 
@@ -35,12 +29,6 @@ var App = React.createClass({
     muiTheme: React.PropTypes.object
   },
   
-  getInitialState: function () {
-    return ({
-      posts:Posts
-    })
-  },
-
   getChildContext: function() {
     return {
       muiTheme: ThemeManager.getCurrentTheme()
@@ -64,24 +52,47 @@ var App = React.createClass({
         </Card>
       )
     })
+    var icon = <IconButton onClick={this.showDialog} iconClassName= 'material-icons'>note_add</IconButton>
     return (
       <div>
-        <AppBar title='Example website' />
+        <AppBar title='Example website' iconElementRight={icon} />
         <ColumnLayout cards={posts} />
+        <Dialog ref= 'dialog'>
+          <form>
+            <TextField ref= 'author' hintText='Author Name' />
+            <TextField ref= 'content' hintText='Anytime' />
+            <TextField ref= 'image' hintText='Image' />
+            <TextField ref= 'title' hintText='Website Inertent' />
+            <TextField ref= 'subtitle' hintText='Suubtitle' />
+          </form>
+          <FlatButton label='Submit' primary={true} onClick={this.submitPost} />
+          <FlatButton label='Cancel' secondary={true} onClick={this.hideDialog} />
+        </Dialog>
       </div>
     )
   },
   
   showDialog: function () {
-    
+    this.refs.addPost.show()
   },
   
   hideDialog: function () {
-    
+    this.refs.addPost.dismiss()
   },
   
   submitPost: function () {
-    
+   var post = {
+     author: this.refs.author.getValue(),
+     title: this.refs.title.getValue(),
+     subtitle: this.refs.subtitle.getValue(),
+     image: this.refs.image.getValue(),
+     content: this.refs.content.getValue(),
+     time: new Date()
+   }
+   this.setState({
+     posts: this.state.posts.concat([post])
+   })
+   this.refs.addPost.dismiss()
   }
 
 })
