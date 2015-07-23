@@ -64,24 +64,38 @@ var App = React.createClass({
         </Card>
       )
     })
+    var icon = <IconButton onClick={this.showDialog} iconClassName='material-icons'>note_add</IconButton>
     return (
       <div>
-        <AppBar title='Example website' />
+        <AppBar title='Example website' iconElementRight={icon} />
         <ColumnLayout cards={posts} />
+        <Dialog ref='dialog'>
+          <form>
+            <TextField ref='author' hintText='Author Name' />
+          </form>
+          <FlatButton label='Submit' primary={true} onClick={this.submitPost} />
+          <FlatButton label='Cancel' secondary={true} onClick={this.hideDialog} />
+        </Dialog>
       </div>
     )
   },
   
   showDialog: function () {
-    
+    this.refs.dialog.show()
   },
   
   hideDialog: function () {
-    
+    this.refs.dialog.dismiss()
   },
   
   submitPost: function () {
-    
+    var post = {
+      author: this.refs.author.getValue(),
+    }
+    this.setState({
+      posts: this.state.posts.concat([post])
+    })
+    this.refs.dialog.dismiss()
   }
 
 })
